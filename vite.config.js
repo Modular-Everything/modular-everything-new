@@ -1,3 +1,4 @@
+import handlebars from "vite-plugin-handlebars";
 import { resolve } from "path";
 import { fileURLToPath } from "url";
 import { defineConfig } from "vite";
@@ -8,6 +9,9 @@ const pages = resolve(root, "pages");
 const input = {
   main: resolve(root, "index.html"),
   about: resolve(root, "about", "index.html"),
+};
+const pugLocals = {
+  bundler: "Vite",
 };
 
 export default () => {
@@ -20,6 +24,16 @@ export default () => {
         input,
       },
     },
+    plugins: [
+      handlebars({
+        context() {
+          return {
+            title: "Testing template engines",
+          };
+        },
+        partialDirectory: resolve(__dirname, "src/views"),
+      }),
+    ],
     resolve: {
       alias: {
         "@": fileURLToPath(new URL("./src/app", import.meta.url)),
