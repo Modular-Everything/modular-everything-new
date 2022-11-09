@@ -1,4 +1,4 @@
-import "../styles/style.css";
+import "../styles/index.css";
 
 import { App } from "./classes/App";
 

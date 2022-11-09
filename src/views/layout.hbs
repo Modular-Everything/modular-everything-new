@@ -9,5 +9,7 @@
     <div id="app" data-template="{{ template }}">
       {{> @partial-block }}
     </div>
+
+    <script type="module" src="{{resolve-from-root '../app/main.js'}}"></script>
   </body>
 </html>
