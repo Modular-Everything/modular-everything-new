@@ -9,7 +9,7 @@
 
 .home__project {
   display: grid;
-  grid-template-rows: 1fr 2fr;
+  grid-template-rows: [meta] 1fr [media] 2fr;
 }
 
 .home__project__meta {
@@ -50,4 +50,9 @@
 
 .home__project__media {
   background-color: $color-mid-grey;
+}
+
+.home__chat {
+  display: flex;
+  justify-content: end;
 }
