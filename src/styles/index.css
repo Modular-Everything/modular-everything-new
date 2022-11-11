@@ -1,1 +1,13 @@
 @import "@csstools/normalize.css/opinionated.css";
+
+@import "./utils/variables.css";
+@import "./utils/mixins.css";
+
+@import "./base/base.css";
+
+@import "./pages/page.css";
+
+@import "./pages/home/home.css";
+@import "./pages/home/meta.css";
+@import "./pages/home/projects.css";
+@import "./pages/home/content.css";
