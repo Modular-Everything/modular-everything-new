@@ -16,6 +16,12 @@ export const Application = class Application {
   initRoutes(routes) {
     this.routes = routes;
     this.pages = {};
-    console.log(routes);
+
+    routes.forEach(({ component: Component, template }) => {
+      this.pages[template] = new Component();
+    });
+
+    this.page = this.pages[this.template];
+    this.page.create();
   }
 };
