@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "auto-bind": "^5.0.1",
     "node": "^19.0.1",
     "postcss-calc": "^8.2.4",
     "postcss-extend-rule": "^4.0.0",
