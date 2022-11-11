@@ -5,6 +5,8 @@
 
 @import "./base/base.css";
 
+@import "./components/chat.css";
+
 @import "./pages/page.css";
 
 @import "./pages/home/home.css";

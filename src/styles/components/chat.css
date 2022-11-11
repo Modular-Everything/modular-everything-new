@@ -1,0 +1,25 @@
+.chat__link {
+  @extend %button-reset;
+
+  display: flex;
+  align-items: flex-end;
+}
+
+.chat__label {
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+  background-color: $color-dark-grey;
+  color: $color-white;
+  white-space: nowrap;
+  font-weight: $font-medium;
+}
+
+.chat__icon {
+  background-color: $color-blue;
+  min-width: 15rem;
+  width: 100%;
+  display: flex;
+  font-size: 2.4rem;
+  font-weight: $font-bold;
+}
