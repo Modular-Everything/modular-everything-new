@@ -1,7 +1,81 @@
 {{#>layout template='home'}}
 <div class="home">
   <div class="home__wrapper">
-    <img src="/modular_everything_logo.svg" alt="{{ title }}" />
+    <div class="home__meta">
+      <div class="home__logo">
+        <img src="/modular_everything_logo.svg" alt="{{ title }}" />
+      </div>
+
+      <div class="home__selected-works">
+        Selected development works 18&ndash;22&searr;
+      </div>
+    </div>
+
+    <div class="home__projects">
+      <ul class="home__projects__wrapper">
+        <li class="home__projects__item">
+          <button type="button" class="home__projects__item__link">
+            DSCVRD Magazine
+          </button>
+        </li>
+        <li class="home__projects__item">
+          <button type="button" class="home__projects__item__link">
+            EF Kids &amp; Teens
+          </button>
+        </li>
+        <li class="home__projects__item">
+          <button
+            type="button"
+            class="home__projects__item__link home__projects__item__link--active"
+          >
+            Outbreak Fest
+          </button>
+        </li>
+        <li class="home__projects__item">
+          <button type="button" class="home__projects__item__link">
+            NRG Experiential
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <div class="home__content">
+      <nav class="home__nav nav">
+        <ul class="nav__wrapper">
+          <li class="nav__item"><a href="/">Work</a></li>
+          <li class="nav__item"><a href="/">About</a></li>
+          <li class="nav__item"><a href="/">Get in touch</a></li>
+        </ul>
+      </nav>
+
+      <div class="home__project">
+        <div class="home__projects__meta">
+          <div class="home__projects__meta__info">
+            Design &amp; Development &searr; Gatsby / React / Storyblok
+          </div>
+
+          <div class="home__projects__meta__caption">
+            <p>
+              The latest iteration of the Outbreak Fest website, featuring a
+              countdown timer to the event, line-up posters, event history and
+              interactive stage times.
+            </p>
+            <a href="https://outbreak-fest.co.uk/" target="_blank"
+              >Visit &nearr;</a
+            >
+          </div>
+        </div>
+
+        <div class="home__projects__media"></div>
+      </div>
+
+      <div class="home__chat">
+        <button type="button" class="home__chat__link">
+          <div class="home__chat__label">Leave a comment</div>
+          <div class="home__chat__icon">&swarr;</div>
+        </button>
+      </div>
+    </div>
   </div>
 </div>
 {{/layout}}
