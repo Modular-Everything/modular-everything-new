@@ -1,5 +1,17 @@
 import "../styles/index.css";
 
-import { App } from "./classes/App";
+import { Application } from "./classes/App";
+import { HomePage } from "./pages/Home";
 
-const app = new App();
+const App = new Application();
+
+const routes = [
+  {
+    component: HomePage,
+    template: "home",
+  },
+];
+
+App.initRoutes(routes);
+
+window.App = App;
