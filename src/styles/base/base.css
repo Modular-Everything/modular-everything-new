@@ -1,0 +1,26 @@
+html {
+  $vw: 100vw;
+
+  @extend %cover;
+
+  position: fixed;
+  overflow: hidden;
+  font-size: calc($vw / 1512 * 10);
+  line-height: 1;
+}
+
+body {
+  @extend %cover;
+
+  background: $color-white;
+  color: $color-black;
+  position: fixed;
+  font-family: $font-space-grotesk;
+  letter-spacing: $letter-spacing;
+  line-height: $line-height;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
