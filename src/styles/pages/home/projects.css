@@ -9,14 +9,10 @@
 }
 
 .home__projects__item__link {
+  @extend %button-reset;
+
   margin: 0 0 0 -0.3rem;
-  border: 0;
-  padding: 0;
-  background: transparent;
   font-size: 4.6rem;
-  letter-spacing: $letter-spacing;
-  line-height: $line-height;
-  font-family: $font-space-grotesk;
   color: $color-mid-grey;
   text-align: left;
 
