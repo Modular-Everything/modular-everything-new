@@ -5,8 +5,16 @@ html {
 
   position: fixed;
   overflow: hidden;
-  font-size: calc($vw / 1512 * 10);
+  font-size: calc($vw / 768 * 10);
   line-height: 1;
+
+  @media (min-width: 768px) {
+    font-size: calc($vw / 1200 * 10);
+  }
+
+  @media (min-width: 1200px) {
+    font-size: calc($vw / 1512 * 10);
+  }
 }
 
 body {
