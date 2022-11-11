@@ -1,0 +1,9 @@
+.home {
+  @extend %page;
+}
+
+.home__wrapper {
+  display: grid;
+  height: 100%;
+  grid-template-columns: [meta] 13rem [projects] 2fr [content] 3fr;
+}
