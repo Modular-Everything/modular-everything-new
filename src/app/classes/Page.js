@@ -8,6 +8,8 @@ export const Page = class Page {
   create() {
     this.initElement(this.selector);
     this.initElements(this.selectors);
+
+    console.log(`Created page: ${this.id}`);
   }
 
   initElement(selector) {
