@@ -6,6 +6,9 @@
   @extend %list-reset;
 
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .home__projects__item__link {
