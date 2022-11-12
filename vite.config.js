@@ -10,9 +10,6 @@ const input = {
   main: resolve(root, "index.html"),
   about: resolve(root, "about", "index.html"),
 };
-const pugLocals = {
-  bundler: "Vite",
-};
 
 export default () => {
   return defineConfig({
@@ -28,7 +25,134 @@ export default () => {
       handlebars({
         context() {
           return {
-            title: "Testing template engines",
+            title: "Modular Everything",
+            projects: [
+              {
+                title: "Outbreak Fest",
+                id: "outbreak-fest",
+                active: false,
+              },
+              {
+                title: "DSCVRD Magazine",
+                id: "dscvrd-magazine",
+                active: false,
+              },
+              {
+                title: "EF Kids & Teens",
+                id: "ef-kids-and-teens",
+                active: false,
+              },
+              {
+                title: "NRG Experiential",
+                id: "nrg",
+                active: false,
+              },
+              {
+                title: "Andy Cooke",
+                id: "andy-cooke",
+                active: false,
+              },
+              {
+                title: "Outbreak Fest",
+                id: "outbreak-fest",
+                active: false,
+              },
+              {
+                title: "DSCVRD Magazine",
+                id: "dscvrd-magazine",
+                active: false,
+              },
+              {
+                title: "EF Kids & Teens",
+                id: "ef-kids-and-teens",
+                active: false,
+              },
+              {
+                title: "NRG Experiential",
+                id: "nrg",
+                active: false,
+              },
+              {
+                title: "Andy Cooke",
+                id: "andy-cooke",
+                active: false,
+              },
+              {
+                title: "Outbreak Fest",
+                id: "outbreak-fest",
+                active: true,
+              },
+              {
+                title: "DSCVRD Magazine",
+                id: "dscvrd-magazine",
+                active: false,
+              },
+              {
+                title: "EF Kids & Teens",
+                id: "ef-kids-and-teens",
+                active: false,
+              },
+              {
+                title: "NRG Experiential",
+                id: "nrg",
+                active: false,
+              },
+              {
+                title: "Andy Cooke",
+                id: "andy-cooke",
+                active: false,
+              },
+              {
+                title: "Outbreak Fest",
+                id: "outbreak-fest",
+                active: false,
+              },
+              {
+                title: "DSCVRD Magazine",
+                id: "dscvrd-magazine",
+                active: false,
+              },
+              {
+                title: "EF Kids & Teens",
+                id: "ef-kids-and-teens",
+                active: false,
+              },
+              {
+                title: "NRG Experiential",
+                id: "nrg",
+                active: false,
+              },
+              {
+                title: "Andy Cooke",
+                id: "andy-cooke",
+                active: false,
+              },
+              {
+                title: "Outbreak Fest",
+                id: "outbreak-fest",
+                active: false,
+              },
+              {
+                title: "DSCVRD Magazine",
+                id: "dscvrd-magazine",
+                active: false,
+              },
+              {
+                title: "EF Kids & Teens",
+                id: "ef-kids-and-teens",
+                active: false,
+              },
+              {
+                title: "NRG Experiential",
+                id: "nrg",
+                active: false,
+              },
+              {
+                title: "Andy Cooke",
+                id: "andy-cooke",
+                active: false,
+              },
+            ],
           };
         },
         partialDirectory: resolve(__dirname, "src/views"),

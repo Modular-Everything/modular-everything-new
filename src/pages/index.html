@@ -13,29 +13,17 @@
 
     <div class="home__projects">
       <ul class="home__projects__wrapper">
-        <li class="home__projects__item">
-          <button type="button" class="home__projects__item__link">
-            DSCVRD Magazine
-          </button>
-        </li>
-        <li class="home__projects__item">
-          <button type="button" class="home__projects__item__link">
-            EF Kids &amp; Teens
-          </button>
-        </li>
+        {{#each projects}}
         <li class="home__projects__item">
           <button
             type="button"
-            class="home__projects__item__link home__projects__item__link--active"
+            class="home__projects__item__link {{#if this.active}}home__projects__item__link--active{{/if}}"
+            data-project-id="{{this.id}}"
           >
-            Outbreak Fest
+            {{this.title}}
           </button>
         </li>
-        <li class="home__projects__item">
-          <button type="button" class="home__projects__item__link">
-            NRG Experiential
-          </button>
-        </li>
+        {{/each}}
       </ul>
     </div>
 
