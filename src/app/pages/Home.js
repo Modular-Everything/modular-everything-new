@@ -13,4 +13,31 @@ export const HomePage = class HomePage extends Page {
       },
     });
   }
+
+  create() {
+    super.create();
+    this.createProjectItems();
+  }
+
+  createProjectItems() {
+    const { projectItems } = this.elements;
+
+    projectItems.forEach((item) => {
+      const activeProjectId = item.querySelector(
+        ".home__projects__item__link--active"
+      );
+
+      if (activeProjectId) {
+        document.body.dataset.selectedProject =
+          activeProjectId.dataset.projectId;
+      }
+
+      const projectId = item.children[0].dataset.projectId;
+
+      item.addEventListener(
+        "click",
+        () => (document.body.dataset.selectedProject = projectId)
+      );
+    });
+  }
 };
