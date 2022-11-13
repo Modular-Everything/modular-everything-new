@@ -12,6 +12,18 @@ export const Page = class Page {
     console.log(`Created page: ${this.id}`);
   }
 
+  show(anim) {
+    return new Promise(async (resolve) => {
+      if (anim) {
+        await anim.play();
+      } else {
+        console.warn(`Page ${this.id} doesn't have an animation set.`);
+      }
+
+      resolve();
+    });
+  }
+
   initElement(selector) {
     if (!selector) {
       return;

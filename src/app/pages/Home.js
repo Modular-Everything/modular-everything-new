@@ -1,3 +1,4 @@
+import gsap from "gsap";
 import { Page } from "@/classes/Page";
 
 export const HomePage = class HomePage extends Page {
@@ -39,5 +40,20 @@ export const HomePage = class HomePage extends Page {
         () => (document.body.dataset.selectedProject = projectId)
       );
     });
+  }
+
+  show() {
+    this.timelineIn = gsap.timeline();
+    this.timelineIn.fromTo(
+      this.element,
+      {
+        autoAlpha: 0,
+      },
+      {
+        autoAlpha: 1,
+        duration: 2,
+      }
+    );
+    super.show(this.timelineIn);
   }
 };

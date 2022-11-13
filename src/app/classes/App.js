@@ -23,5 +23,6 @@ export const Application = class Application {
 
     this.page = this.pages[this.template];
     this.page.create();
+    this.page.show();
   }
 };
