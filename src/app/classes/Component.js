@@ -12,18 +12,6 @@ export const Component = class Component {
     console.log(`Created component: ${this.id}`);
   }
 
-  show(anim) {
-    return new Promise(async (resolve) => {
-      if (anim) {
-        await anim.play();
-      } else {
-        console.warn(`Component ${this.id} doesn't have an animation set.`);
-      }
-
-      resolve();
-    });
-  }
-
   initElement(selector) {
     if (!selector) {
       return;
