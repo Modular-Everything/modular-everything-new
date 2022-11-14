@@ -1,5 +1,7 @@
 .home {
   @extend %page;
+
+  z-index: 1;
 }
 
 .home__wrapper {
