@@ -52,7 +52,7 @@
   background-color: $color-mid-grey;
 }
 
-.home__project__media img {
+.home__project__media > * {
   width: 100%;
   height: 100%;
   object-fit: cover;
