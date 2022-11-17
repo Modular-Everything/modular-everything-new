@@ -47,6 +47,7 @@
   background-color: $color-blue;
   padding: 1rem 8rem 0 0;
   font-size: 1.4rem;
+  text-decoration: none;
 }
 
 .home__project__media {
