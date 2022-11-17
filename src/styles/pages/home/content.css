@@ -1,6 +1,7 @@
 .home__content {
   display: grid;
   grid-template-rows: 1fr 9.4rem;
+  background-color: $color-white;
 }
 
 .home__nav {

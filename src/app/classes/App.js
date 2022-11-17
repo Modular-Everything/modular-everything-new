@@ -1,6 +1,19 @@
+import { Preloader } from "../components/Preloader";
+
 export const Application = class Application {
   constructor() {
+    this.createPreloader();
     this.initContainer();
+  }
+
+  createPreloader() {
+    this.preloader = new Preloader();
+    this.preloader.once("completed", this.onPreloaded.bind(this));
+  }
+
+  onPreloaded() {
+    this.preloader.destroy();
+    this.page.show();
   }
 
   initContainer() {
@@ -23,6 +36,5 @@ export const Application = class Application {
 
     this.page = this.pages[this.template];
     this.page.create();
-    this.page.show();
   }
 };

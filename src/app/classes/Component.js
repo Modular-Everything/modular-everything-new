@@ -1,5 +1,9 @@
-export const Component = class Component {
+import EventEmitter from "events";
+
+export const Component = class Component extends EventEmitter {
   constructor({ id, element, elements }) {
+    super();
+
     this.id = id;
     this.selector = element;
     this.selectors = { ...elements };
@@ -31,7 +35,11 @@ export const Component = class Component {
       const selector = selectors[key];
       if (selector === window) {
         this.elements[key] = window;
-      } else if (selector instanceof window.HTMLElement) {
+      } else if (
+        selector instanceof window.HTMLElement ||
+        selector instanceof window.NodeList ||
+        Array.isArray(selector)
+      ) {
         this.elements[key] = selector;
       } else {
         this.elements[key] = document.querySelectorAll(selector);

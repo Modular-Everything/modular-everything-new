@@ -1,5 +1,5 @@
 import gsap from "gsap";
-import { Page } from "@/classes/Page";
+import { Page } from "../classes/Page";
 
 export const HomePage = class HomePage extends Page {
   constructor() {
@@ -51,7 +51,7 @@ export const HomePage = class HomePage extends Page {
       },
       {
         autoAlpha: 1,
-        duration: 2,
+        duration: 1,
       }
     );
     super.show(this.timelineIn);

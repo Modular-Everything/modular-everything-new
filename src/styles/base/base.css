@@ -20,7 +20,7 @@ html {
 body {
   @extend %cover;
 
-  background: $color-white;
+  background: $color-blue;
   color: $color-black;
   position: fixed;
   font-family: $font-space-grotesk;

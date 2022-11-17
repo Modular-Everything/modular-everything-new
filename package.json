@@ -10,8 +10,9 @@
   },
   "devDependencies": {
     "auto-bind": "^5.0.1",
+    "events": "^3.3.0",
     "lodash": "^4.17.21",
-    "node": "^19.0.1",
+    "node": "^19.1.0",
     "postcss-calc": "^8.2.4",
     "postcss-extend-rule": "^4.0.0",
     "postcss-nesting": "^10.2.0",
