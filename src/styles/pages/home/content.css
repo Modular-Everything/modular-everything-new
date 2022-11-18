@@ -11,7 +11,7 @@
 
 .home__project {
   display: grid;
-  grid-template-rows: [meta] 25% [media] 75%;
+  grid-template-rows: [meta] 35% [media] 65%;
   /*
   display: flex;
   flex-direction: column;
