@@ -1,3 +1,4 @@
+import Prefix from "prefix";
 import gsap from "gsap";
 import { Page } from "../classes/Page";
 
@@ -13,12 +14,30 @@ export const HomePage = class HomePage extends Page {
         projectItems: ".home__projects__item",
       },
     });
+
+    this.transformPrefix = Prefix("transform");
   }
+
+  /**
+   * Create the page and project items,
+   * and add the scroll hijacking
+   */
 
   create() {
     super.create();
     this.createProjectItems();
+
+    this.scroll = {
+      current: 0,
+      target: 0,
+      last: 0,
+      limit: this.sizes.inner.height,
+    };
   }
+
+  /**
+   * Create a navigation item from each project item
+   */
 
   createProjectItems() {
     const { projectItems } = this.elements;
@@ -42,6 +61,13 @@ export const HomePage = class HomePage extends Page {
     });
   }
 
+  /**
+   * Reveal the page
+   * This happens after the preloader because
+   * this.page.show() isn't called until after
+   * the preloader has finished
+   */
+
   show() {
     this.timelineIn = gsap.timeline();
     this.timelineIn.fromTo(
@@ -55,5 +81,29 @@ export const HomePage = class HomePage extends Page {
       }
     );
     super.show(this.timelineIn);
+  }
+
+  /**
+   * Runs every time the page animation frame changes
+   */
+
+  update() {
+    this.scroll.target = gsap.utils.clamp(
+      0,
+      this.scroll.limit,
+      this.scroll.target
+    );
+
+    this.scroll.current = gsap.utils.interpolate(
+      this.scroll.current,
+      this.scroll.target,
+      0.1
+    );
+
+    this.elements.projectItems.forEach((item) => {
+      item.style[
+        this.transformPrefix
+      ] = `translateY(-${this.scroll.current}px)`;
+    });
   }
 };

@@ -17,6 +17,7 @@
     "postcss-extend-rule": "^4.0.0",
     "postcss-nesting": "^10.2.0",
     "postcss-simple-vars": "^7.0.1",
+    "prefix": "^1.0.0",
     "url": "^0.11.0",
     "vite": "^3.2.3",
     "vite-plugin-handlebars": "^1.6.0"

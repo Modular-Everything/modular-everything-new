@@ -1,6 +1,6 @@
 .home__projects {
   background-color: $color-light-grey;
-  overflow: hidden;
+  height: 100vh;
 }
 
 .home__projects__wrapper {

@@ -1,10 +1,16 @@
+import AutoBind from "auto-bind";
 import { Preloader } from "../components/Preloader";
 
 export const Application = class Application {
   constructor() {
+    AutoBind(this);
     this.createPreloader();
     this.initContainer();
   }
+
+  /**
+   * Preloader
+   */
 
   createPreloader() {
     this.preloader = new Preloader();
@@ -16,6 +22,20 @@ export const Application = class Application {
     this.page.show();
   }
 
+  /**
+   * Init when page has finished preloading
+   */
+
+  init() {
+    this.addEventListeners();
+    this.onResize();
+    this.update();
+  }
+
+  /**
+   * Create the container
+   */
+
   initContainer() {
     this.content = document.querySelector("#app");
     this.template = this.content.dataset.template;
@@ -26,6 +46,10 @@ export const Application = class Application {
     }
   }
 
+  /**
+   * Routes
+   */
+
   initRoutes(routes) {
     this.routes = routes;
     this.pages = {};
@@ -35,6 +59,56 @@ export const Application = class Application {
     });
 
     this.page = this.pages[this.template];
+    this.page.sizes = {
+      inner: this.windowInnerSizes,
+      outer: this.windowOuterSizes,
+    };
     this.page.create();
+  }
+
+  /**
+   * Scroll hijacking
+   */
+
+  onMouseWheel(e) {
+    const { deltaY } = e;
+    this.page.scroll.target += deltaY;
+  }
+
+  /**
+   * Resize handling
+   */
+
+  onResize() {
+    // Set both inner and outer sizes
+    this.windowInnerSizes = {
+      height: window.innerHeight,
+      width: window.innerWidth,
+    };
+
+    this.windowOuterSizes = {
+      height: window.outerHeight,
+      width: window.outerWidth,
+    };
+  }
+
+  /**
+   * Event listeners
+   */
+
+  addEventListeners() {
+    window.addEventListener("mousewheel", this.onMouseWheel);
+    window.addEventListener("resize", this.onResize);
+  }
+
+  removeEventListeners() {}
+
+  /**
+   * Update - called on each frame of the browser
+   */
+
+  update() {
+    this.page?.update?.();
+    this.frame = window.requestAnimationFrame(this.update);
   }
 };
