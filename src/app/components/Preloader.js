@@ -58,6 +58,7 @@ export const Preloader = class Preloader extends Component {
 
       this.animateOut.call(() => {
         this.emit("completed");
+        resolve();
       });
     });
   }
