@@ -3,7 +3,6 @@ import EventEmitter from "events";
 export const Component = class Component extends EventEmitter {
   constructor({ id, element, elements }) {
     super();
-
     this.id = id;
     this.selector = element;
     this.selectors = { ...elements };

@@ -6,6 +6,7 @@ export const Application = class Application {
     AutoBind(this);
     this.createPreloader();
     this.initContainer();
+    this.addEventListeners();
   }
 
   /**
@@ -19,6 +20,7 @@ export const Application = class Application {
 
   onPreloaded() {
     this.preloader.destroy();
+    this.onResize();
     this.page.show();
   }
 
@@ -27,8 +29,6 @@ export const Application = class Application {
    */
 
   init() {
-    this.addEventListeners();
-    this.onResize();
     this.update();
   }
 
@@ -59,49 +59,8 @@ export const Application = class Application {
     });
 
     this.page = this.pages[this.template];
-    this.page.sizes = {
-      inner: this.windowInnerSizes,
-      outer: this.windowOuterSizes,
-    };
     this.page.create();
   }
-
-  /**
-   * Scroll hijacking
-   */
-
-  onMouseWheel(e) {
-    const { deltaY } = e;
-    this.page.scroll.target += deltaY;
-  }
-
-  /**
-   * Resize handling
-   */
-
-  onResize() {
-    // Set both inner and outer sizes
-    this.windowInnerSizes = {
-      height: window.innerHeight,
-      width: window.innerWidth,
-    };
-
-    this.windowOuterSizes = {
-      height: window.outerHeight,
-      width: window.outerWidth,
-    };
-  }
-
-  /**
-   * Event listeners
-   */
-
-  addEventListeners() {
-    window.addEventListener("mousewheel", this.onMouseWheel);
-    window.addEventListener("resize", this.onResize);
-  }
-
-  removeEventListeners() {}
 
   /**
    * Update - called on each frame of the browser
@@ -110,5 +69,21 @@ export const Application = class Application {
   update() {
     this.page?.update?.();
     this.frame = window.requestAnimationFrame(this.update);
+  }
+
+  /**
+   * Resize
+   */
+
+  onResize() {
+    this.page?.onResize?.();
+  }
+
+  /**
+   * Event listeners
+   */
+
+  addEventListeners() {
+    window.addEventListener("resize", this.onResize.bind(this));
   }
 };

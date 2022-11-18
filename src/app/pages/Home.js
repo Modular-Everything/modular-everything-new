@@ -9,13 +9,14 @@ export const HomePage = class HomePage extends Page {
       element: ".home",
       elements: {
         meta: ".home__meta",
-        projects: ".home__projects",
+        projects: ".home__projects__wrapper",
         content: ".home__content",
         projectItems: ".home__projects__item",
       },
     });
 
     this.transformPrefix = Prefix("transform");
+    this.onMouseWheelEvent = this.onMouseWheel.bind(this);
   }
 
   /**
@@ -30,8 +31,7 @@ export const HomePage = class HomePage extends Page {
     this.scroll = {
       current: 0,
       target: 0,
-      last: 0,
-      limit: this.sizes.inner.height,
+      limit: 500,
     };
   }
 
@@ -81,10 +81,29 @@ export const HomePage = class HomePage extends Page {
       }
     );
     super.show(this.timelineIn);
+    this.timelineIn.call(() => {
+      this.callAfterPreloader();
+    });
   }
 
   /**
-   * Runs every time the page animation frame changes
+   * Call this after the preloader
+   */
+  callAfterPreloader() {
+    this.addEventListeners();
+  }
+
+  /**
+   * Adjust scroll target when scrolling
+   */
+
+  onMouseWheel(e) {
+    const { deltaY } = e;
+    this.scroll.target += deltaY;
+  }
+
+  /**
+   * Scroll hijacking
    */
 
   update() {
@@ -100,10 +119,35 @@ export const HomePage = class HomePage extends Page {
       0.1
     );
 
+    if (this.scroll.current < 0.01) {
+      this.scroll.current = 0;
+    }
+
     this.elements.projectItems.forEach((item) => {
       item.style[
         this.transformPrefix
       ] = `translateY(-${this.scroll.current}px)`;
     });
+  }
+
+  /**
+   * Adjust scroll limit on resize
+   */
+
+  onResize() {
+    this.scroll.limit =
+      this.elements.projects.clientHeight - window.innerHeight;
+  }
+
+  /**
+   * Event listeners
+   */
+
+  addEventListeners() {
+    window.addEventListener("mousewheel", this.onMouseWheelEvent);
+  }
+
+  removeEventListeners() {
+    window.removeEventListener("mousewheel", this.onMouseWheelEvent);
   }
 };
