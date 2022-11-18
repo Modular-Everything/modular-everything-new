@@ -1,5 +1,6 @@
 .home__projects {
   background-color: $color-light-grey;
+  overflow: hidden;
 }
 
 .home__projects__wrapper {

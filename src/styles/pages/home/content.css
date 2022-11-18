@@ -1,7 +1,8 @@
 .home__content {
   display: grid;
-  grid-template-rows: 1fr 9.4rem;
+  grid-template-rows: 85% 15%;
   background-color: $color-white;
+  height: 100vh;
 }
 
 .home__nav {
@@ -10,12 +11,19 @@
 
 .home__project {
   display: grid;
-  grid-template-rows: [meta] 1fr [media] 2fr;
+  grid-template-rows: [meta] 25% [media] 75%;
+  /*
+  display: flex;
+  flex-direction: column;
+   */
 }
 
 .home__project__meta {
   display: flex;
   flex-direction: column;
+  /*
+  height: 50%;
+   */
 }
 
 .home__project__meta__info {
@@ -43,7 +51,6 @@
 }
 
 .home__project__meta__caption__link {
-  color: $color-dark-grey;
   background-color: $color-blue;
   padding: 1rem 8rem 0 0;
   font-size: 1.4rem;
@@ -52,6 +59,9 @@
 
 .home__project__media {
   background-color: $color-mid-grey;
+  /*
+  height: 100%;
+   */
 }
 
 .home__project__media > * {

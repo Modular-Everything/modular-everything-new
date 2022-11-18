@@ -5,7 +5,8 @@
 }
 
 .home__wrapper {
+  @extend %page-wrapper;
+
   display: grid;
-  height: 100%;
-  grid-template-columns: [meta] 13rem [projects] 2fr [content] 3fr;
+  grid-template-columns: [meta] 13.5rem [projects] 2fr [content] 3fr;
 }

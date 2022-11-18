@@ -1,7 +1,12 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  user-select: none;
+}
+
 html {
   $vw: 100vw;
-
-  @extend %cover;
 
   position: fixed;
   overflow: hidden;
@@ -31,4 +36,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+}
+
+a {
+  color: inherit;
 }
