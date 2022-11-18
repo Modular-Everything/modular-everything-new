@@ -1,0 +1,8 @@
+{
+  "eslint.workingDirectories": ["./packages/studio", "./packages/web"],
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#2B2B2B",
+    "titleBar.activeBackground": "#141414",
+    "titleBar.activeForeground": "#9FF1FF"
+  }
+}
