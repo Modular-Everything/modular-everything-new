@@ -57,7 +57,6 @@ export const Preloader = class Preloader extends Component {
       );
 
       this.animateOut.call(() => {
-        console.log("finished preloading");
         this.emit("completed");
       });
     });
