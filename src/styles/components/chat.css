@@ -13,6 +13,7 @@
   color: $color-white;
   white-space: nowrap;
   font-weight: $font-medium;
+  font-size: 1.4rem;
 }
 
 .chat__icon {
