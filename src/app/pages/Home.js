@@ -1,6 +1,8 @@
 import Prefix from "prefix";
 import gsap from "gsap";
+import { getOffset } from "../utils/dom";
 import { Page } from "../classes/Page";
+import each from "lodash/each";
 
 export const HomePage = class HomePage extends Page {
   constructor() {
@@ -26,38 +28,56 @@ export const HomePage = class HomePage extends Page {
 
   create() {
     super.create();
-    this.createProjectItems();
 
     this.scroll = {
       current: 0,
       target: 0,
-      limit: 500,
+      limit: this.itemsTotalHeight,
+      last: 0,
     };
+
+    each(this.elements.projectItems, (element) => {
+      this.createNavFromItem(element);
+
+      const offset = getOffset(element);
+      element.extra = 0;
+      element.height = offset.height;
+      element.offset = offset.top;
+      element.position = 0;
+    });
+
+    this.itemHeight =
+      this.elements.projectItems[0].getBoundingClientRect().height;
+
+    this.itemsTotalHeight =
+      this.elements.projects.getBoundingClientRect().height;
+
+    console.log(this.itemsTotalHeight);
+  }
+
+  /**
+   * Handle Y-axis transforms
+   */
+  transformY(element, y) {
+    element.style[this.transformPrefix] = `translate3d(0, ${Math.floor(
+      y
+    )}px, 0)`;
   }
 
   /**
    * Create a navigation item from each project item
    */
 
-  createProjectItems() {
-    const { projectItems } = this.elements;
+  createNavFromItem(item) {
+    const { projectId } = item.children[0].dataset;
+    const active = item.querySelector(".home__projects__item__link--active");
 
-    projectItems.forEach((item) => {
-      const activeProjectId = item.querySelector(
-        ".home__projects__item__link--active"
-      );
+    if (active) {
+      document.body.dataset.selectedProject = active.dataset.projectId;
+    }
 
-      if (activeProjectId) {
-        document.body.dataset.selectedProject =
-          activeProjectId.dataset.projectId;
-      }
-
-      const projectId = item.children[0].dataset.projectId;
-
-      item.addEventListener(
-        "click",
-        () => (document.body.dataset.selectedProject = projectId)
-      );
+    item.addEventListener("click", () => {
+      document.body.dataset.selectedProject = projectId;
     });
   }
 
@@ -123,11 +143,34 @@ export const HomePage = class HomePage extends Page {
       this.scroll.current = 0;
     }
 
-    this.elements.projectItems.forEach((item) => {
-      item.style[
-        this.transformPrefix
-      ] = `translateY(-${this.scroll.current}px)`;
+    if (this.scroll.current < this.scroll.last) {
+      this.direction = "down";
+    } else {
+      this.direction = "up";
+    }
+
+    each(this.elements.projectItems, (element, index) => {
+      element.position = -this.scroll.current - element.extra;
+
+      const offset = element.position + element.offset + element.extra;
+
+      element.isBeforeWrapper = offset < -this.itemHeight;
+      element.isAfterWrapper = offset > this.itemsTotalHeight;
+
+      if (this.direction === "up" && element.isBeforeWrapper) {
+        element.extra = element.extra - this.heightTotal;
+        element.isBeforeWrapper = false;
+        element.isAfterWrapper = false;
+      }
+
+      if (this.direction === "down") {
+        console.log(element.isAfterWrapper, offset);
+      }
+
+      this.transformY(element, element.position);
     });
+
+    this.scroll.last = this.scroll.current;
   }
 
   /**
