@@ -36,21 +36,22 @@ export const HomePage = class HomePage extends Page {
       last: 0,
     };
 
-    each(this.elements.projectItems, (element) => {
-      this.createNavFromItem(element);
-
-      const offset = getOffset(element);
-      element.extra = 0;
-      element.height = offset.height;
-      element.offset = offset.top;
-      element.position = 0;
-    });
-
     this.itemHeight =
       this.elements.projectItems[0].getBoundingClientRect().height;
 
     this.itemsTotalHeight =
       this.elements.projects.getBoundingClientRect().height;
+
+    each(this.elements.projectItems, (element) => {
+      const offset = getOffset(element);
+      element.extra = 0;
+      element.height = offset.height;
+      element.offset = offset.top;
+      element.position = 0;
+
+      this.createNavFromElement(element);
+      this.findActiveNavElement(element);
+    });
   }
 
   /**
@@ -66,16 +67,76 @@ export const HomePage = class HomePage extends Page {
    * Create a navigation item from each project item
    */
 
-  createNavFromItem(item) {
-    const { projectId } = item.children[0].dataset;
-    const active = item.querySelector(".home__projects__item__link--active");
-
-    if (active) {
-      document.body.dataset.selectedProject = active.dataset.projectId;
-    }
-
-    item.addEventListener("click", () => {
+  createNavFromElement(element) {
+    const { projectId } = element.children[0].dataset;
+    element.children[0].addEventListener("click", () => {
       document.body.dataset.selectedProject = projectId;
+      this.setActiveNavElement(element);
+    });
+  }
+
+  /**
+   * Set navigation item as 'active' if it's closest to the middle of the page
+   */
+  findActiveNavElement(element) {
+    const midPointMin = window.innerHeight / 2 - element.height;
+    const midPointMax = window.innerHeight / 2;
+    const button = element.children[0];
+
+    if (element.offset >= midPointMin && element.offset <= midPointMax) {
+      button.classList.add("home__projects__item__link--active");
+      button.appendChild(document.createElement("span"));
+    }
+  }
+
+  /**
+   * Animate in and then set the active nav element
+   */
+  setActiveNavElement(element) {
+    const activeElement = this.elements.projects.querySelector(
+      ".home__projects__item__link--active"
+    );
+    const activeElementUnderline = activeElement.querySelector("span");
+
+    this.tl = gsap.timeline();
+
+    this.tl.to(activeElement, {
+      fontWeight: 400,
+      duration: 0.18,
+    });
+
+    this.tl.to(
+      activeElementUnderline,
+      {
+        scaleY: 0,
+        duration: 0.18,
+        ease: "expo.out",
+      },
+      "-=1"
+    );
+
+    this.tl.to(
+      element.querySelector("span"),
+      {
+        scaleY: 1,
+        duration: 0.18,
+        ease: "expo.in",
+      },
+      "-=2"
+    );
+
+    this.tl.to(
+      element.children[0],
+      {
+        fontWeight: 700,
+        duration: 0.18,
+      },
+      "-=2"
+    );
+
+    this.tl.call(() => {
+      activeElement.classList.remove("home__projects__item__link--active");
+      element.children[0].classList.add("home__projects__item__link--active");
     });
   }
 
@@ -95,7 +156,7 @@ export const HomePage = class HomePage extends Page {
       },
       {
         autoAlpha: 1,
-        duration: 1,
+        duration: 0.18,
       }
     );
     super.show(this.timelineIn);

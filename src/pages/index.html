@@ -17,10 +17,11 @@
         <li class="home__projects__item">
           <button
             type="button"
-            class="home__projects__item__link {{#if this.active}}home__projects__item__link--active{{/if}}"
+            class="home__projects__item__link"
             data-project-id="{{this.id}}"
           >
             {{this.title}}
+            <span></span>
           </button>
         </li>
         {{/each}}

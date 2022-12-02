@@ -12,6 +12,10 @@
   justify-content: center;
 }
 
+.home__projects__item {
+  display: inline-block;
+}
+
 .home__projects__item__link {
   @extend %button-reset;
 
@@ -20,27 +24,33 @@
   color: $color-mid-grey;
   text-align: left;
   transition: 180ms ease font-weight, 180ms ease color;
+  display: block;
+  position: relative;
+  font-weight: $font-regular;
 
   &:hover {
-    font-weight: bold;
+    font-weight: $font-bold !important;
     color: $color-black;
   }
 
+  & span {
+    width: 100%;
+    height: 1rem;
+    display: block;
+    position: absolute;
+    bottom: 0.1rem;
+    z-index: -1;
+    transform: scale(1, 0);
+    background-color: $color-blue;
+  }
+
   &.home__projects__item__link--active {
-    position: relative;
     font-weight: $font-bold;
     z-index: 1;
     color: $color-dark-grey;
 
-    &::after {
-      content: "";
-      width: 100%;
-      height: 1rem;
-      background-color: $color-blue;
-      display: block;
-      position: absolute;
-      bottom: 0.1rem;
-      z-index: -1;
+    & span {
+      transform: scale(1, 1);
     }
   }
 }
