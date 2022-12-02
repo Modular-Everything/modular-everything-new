@@ -2,7 +2,7 @@
   "name": "@modular-everything/root",
   "private": true,
   "scripts": {
-    "dev": "lerna run dev --stream"
+    "dev": "clear && lerna run dev --stream"
   },
   "workspaces": [
     "packages/*"
