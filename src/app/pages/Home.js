@@ -127,21 +127,13 @@ export const HomePage = class HomePage extends Page {
    */
 
   update() {
-    this.scroll.target = gsap.utils.clamp(
-      0,
-      this.scroll.limit,
-      this.scroll.target
-    );
+    const scrollClamp = Math.round(this.scroll.current % this.itemsTotalHeight);
 
     this.scroll.current = gsap.utils.interpolate(
       this.scroll.current,
       this.scroll.target,
       0.1
     );
-
-    if (this.scroll.current < 0.01) {
-      this.scroll.current = 0;
-    }
 
     if (this.scroll.current < this.scroll.last) {
       this.direction = "down";
@@ -152,25 +144,31 @@ export const HomePage = class HomePage extends Page {
     each(this.elements.projectItems, (element, index) => {
       element.position = -this.scroll.current - element.extra;
 
-      const offset = element.position + element.offset + element.extra;
+      const offset = element.position + element.offset + element.height;
 
-      element.isBeforeWrapper = offset < -this.itemHeight;
-      element.isAfterWrapper = offset > this.itemsTotalHeight;
+      element.isBefore = offset < 0;
+      element.isAfter = offset > this.itemsTotalHeight;
 
-      if (this.direction === "up" && element.isBeforeWrapper) {
-        element.extra = element.extra - this.heightTotal;
-        element.isBeforeWrapper = false;
-        element.isAfterWrapper = false;
+      if (this.direction === "up" && element.isBefore) {
+        element.extra = element.extra - this.itemsTotalHeight;
+
+        element.isBefore = false;
+        element.isAfter = false;
       }
 
-      if (this.direction === "down") {
-        console.log(element.isAfterWrapper, offset);
+      if (this.direction === "down" && element.isAfter) {
+        element.extra = element.extra + this.itemsTotalHeight;
+
+        element.isBefore = false;
+        element.isAfter = false;
       }
 
+      element.clamp = element.extra % scrollClamp;
       this.transformY(element, element.position);
     });
 
     this.scroll.last = this.scroll.current;
+    this.scroll.clamp = scrollClamp;
   }
 
   /**
