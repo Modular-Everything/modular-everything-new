@@ -51,8 +51,6 @@ export const HomePage = class HomePage extends Page {
 
     this.itemsTotalHeight =
       this.elements.projects.getBoundingClientRect().height;
-
-    console.log(this.itemsTotalHeight);
   }
 
   /**
@@ -141,7 +139,7 @@ export const HomePage = class HomePage extends Page {
       this.direction = "up";
     }
 
-    each(this.elements.projectItems, (element, index) => {
+    each(this.elements.projectItems, (element) => {
       element.position = -this.scroll.current - element.extra;
 
       const offset = element.position + element.offset + element.height;
@@ -178,6 +176,22 @@ export const HomePage = class HomePage extends Page {
   onResize() {
     this.scroll.limit =
       this.elements.projects.clientHeight - window.innerHeight;
+
+    each(this.elements.projectItems, (element) => {
+      this.transformY(element, 0);
+
+      const offset = getOffset(element);
+      element.extra = 0;
+      element.height = offset.height;
+      element.offset = offset.top;
+      element.position = 0;
+    });
+
+    this.itemHeight =
+      this.elements.projectItems[0].getBoundingClientRect().height;
+
+    this.itemsTotalHeight =
+      this.elements.projects.getBoundingClientRect().height;
   }
 
   /**
