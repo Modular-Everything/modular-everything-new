@@ -71,7 +71,7 @@ export const HomePage = class HomePage extends Page {
     const { projectId } = element.children[0].dataset;
     element.children[0].addEventListener("click", () => {
       document.body.dataset.selectedProject = projectId;
-      this.setActiveNavElement(element);
+      this.setActiveNavElement(element, projectId);
     });
   }
 
@@ -85,7 +85,8 @@ export const HomePage = class HomePage extends Page {
 
     if (element.offset >= midPointMin && element.offset <= midPointMax) {
       button.classList.add("home__projects__item__link--active");
-      button.appendChild(document.createElement("span"));
+      const { projectId } = element.children[0].dataset;
+      document.body.dataset.selectedProject = projectId;
     }
   }
 
