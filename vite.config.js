@@ -52,6 +52,106 @@ export default () => {
                 id: "andy-cooke",
                 active: false,
               },
+              {
+                title: "Outbreak Fest",
+                id: "outbreak-fest",
+                active: false,
+              },
+              {
+                title: "DSCVRD Magazine",
+                id: "dscvrd-magazine",
+                active: false,
+              },
+              {
+                title: "EF Kids & Teens",
+                id: "ef-kids-and-teens",
+                active: false,
+              },
+              {
+                title: "NRG Experiential",
+                id: "nrg",
+                active: false,
+              },
+              {
+                title: "Andy Cooke",
+                id: "andy-cooke",
+                active: false,
+              },
+              {
+                title: "Outbreak Fest",
+                id: "outbreak-fest",
+                active: false,
+              },
+              {
+                title: "DSCVRD Magazine",
+                id: "dscvrd-magazine",
+                active: false,
+              },
+              {
+                title: "EF Kids & Teens",
+                id: "ef-kids-and-teens",
+                active: false,
+              },
+              {
+                title: "NRG Experiential",
+                id: "nrg",
+                active: false,
+              },
+              {
+                title: "Andy Cooke",
+                id: "andy-cooke",
+                active: false,
+              },
+              {
+                title: "Outbreak Fest",
+                id: "outbreak-fest",
+                active: false,
+              },
+              {
+                title: "DSCVRD Magazine",
+                id: "dscvrd-magazine",
+                active: false,
+              },
+              {
+                title: "EF Kids & Teens",
+                id: "ef-kids-and-teens",
+                active: false,
+              },
+              {
+                title: "NRG Experiential",
+                id: "nrg",
+                active: false,
+              },
+              {
+                title: "Andy Cooke",
+                id: "andy-cooke",
+                active: false,
+              },
+              {
+                title: "Outbreak Fest",
+                id: "outbreak-fest",
+                active: false,
+              },
+              {
+                title: "DSCVRD Magazine",
+                id: "dscvrd-magazine",
+                active: false,
+              },
+              {
+                title: "EF Kids & Teens",
+                id: "ef-kids-and-teens",
+                active: false,
+              },
+              {
+                title: "NRG Experiential",
+                id: "nrg",
+                active: false,
+              },
+              {
+                title: "Andy Cooke",
+                id: "andy-cooke",
+                active: false,
+              },
             ],
           };
         },
