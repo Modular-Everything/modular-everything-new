@@ -1,29 +1,13 @@
 {
-  "name": "modular-everything",
+  "name": "@modular-everything/root",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev": "lerna run dev --stream"
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "devDependencies": {
-    "auto-bind": "^5.0.1",
-    "events": "^3.3.0",
-    "lodash": "^4.17.21",
-    "node": "^19.1.0",
-    "postcss-calc": "^8.2.4",
-    "postcss-extend-rule": "^4.0.0",
-    "postcss-nesting": "^10.2.0",
-    "postcss-simple-vars": "^7.0.1",
-    "prefix": "^1.0.0",
-    "url": "^0.11.0",
-    "vite": "^3.2.3",
-    "vite-plugin-handlebars": "^1.6.0"
-  },
-  "dependencies": {
-    "@csstools/normalize.css": "^12.0.0",
-    "gsap": "^3.11.3"
+    "lerna": "^6.1.0"
   }
 }
