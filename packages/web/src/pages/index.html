@@ -3,28 +3,37 @@
   <div class="home__wrapper">
     <div class="home__meta">
       <div class="home__logo">
-        <img data-src="/modular_everything_logo.svg" alt="{{ title }}" />
+        <img
+          data-src="/modular_everything_logo.svg"
+          alt="{{ homepage.title }}"
+        />
       </div>
 
-      <div class="home__selected-works">
-        Selected development works 18&ndash;22&searr;
-      </div>
+      <div class="home__selected-works">{{homepage.selected_works}}</div>
     </div>
 
     <div class="home__projects">
       <ul class="home__projects__wrapper">
-        {{#each projects}}
         <li class="home__projects__item">
           <button
             type="button"
             class="home__projects__item__link"
-            data-project-id="{{this.id}}"
+            data-project-id="test-id"
           >
-            {{this.title}}
+            test title
             <span></span>
           </button>
         </li>
-        {{/each}}
+        <li class="home__projects__item">
+          <button
+            type="button"
+            class="home__projects__item__link"
+            data-project-id="test-id2"
+          >
+            test title
+            <span></span>
+          </button>
+        </li>
       </ul>
     </div>
 
@@ -59,13 +68,13 @@
         </div>
 
         <div class="home__project__media">
-          <img data-src="/demo.jpeg" alt="" loading="lazy" />
+          <img data-src="/demo.jpg" alt="" loading="lazy" />
         </div>
       </div>
 
       <div class="home__chat chat">
         <button type="button" class="chat__link">
-          <div class="chat__label">Leave a comment</div>
+          <div class="chat__label">{{homepage.comment}}</div>
           <div class="chat__icon">
             <img data-src="/arrow_sw.svg" alt="↙" />
           </div>
