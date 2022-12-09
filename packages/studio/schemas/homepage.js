@@ -18,20 +18,23 @@ export default {
       title: "Comment",
       type: "string",
     },
-    // {
-    //   name: "projects",
-    //   title: "Projects",
-    //   type: "array",
-    //   of: [
-    //     {
-    //       name: 'project',
-    //       title: 'Project',
-    //       type: 'reference',
-    //       to: [{
-    //         type: 'project'
-    //       }]
-    //     },
-    //   ],
-    // },
+    {
+      name: "projects",
+      title: "Projects",
+      type: "array",
+      validation: (Rule) => Rule.unique(),
+      of: [
+        {
+          name: "project",
+          title: "Project",
+          type: "reference",
+          to: [
+            {
+              type: "project",
+            },
+          ],
+        },
+      ],
+    },
   ],
 };

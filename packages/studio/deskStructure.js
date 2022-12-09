@@ -13,5 +13,8 @@ export default function deskStructure() {
             .title("Homepage")
             .views([S.view.form()])
         ),
+      S.listItem()
+        .title("Projects")
+        .child(() => S.documentTypeList("project")),
     ]);
 }

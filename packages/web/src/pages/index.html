@@ -14,26 +14,18 @@
 
     <div class="home__projects">
       <ul class="home__projects__wrapper">
+        {{#each homepage.projects}}
         <li class="home__projects__item">
           <button
             type="button"
             class="home__projects__item__link"
-            data-project-id="test-id"
+            data-project-id="{{this.slug}}"
           >
-            test title
+            {{this.title}}
             <span></span>
           </button>
         </li>
-        <li class="home__projects__item">
-          <button
-            type="button"
-            class="home__projects__item__link"
-            data-project-id="test-id2"
-          >
-            test title
-            <span></span>
-          </button>
-        </li>
+        {{/each}}
       </ul>
     </div>
 

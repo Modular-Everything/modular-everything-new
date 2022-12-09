@@ -1,7 +1,8 @@
+import { defineConfig, loadEnv } from "vite";
 import handlebars from "vite-plugin-handlebars";
 import { resolve } from "path";
 import { fileURLToPath } from "url";
-import { defineConfig } from "vite";
+import Sanity from "./src/app/data/sanity/Sanity";
 
 const root = resolve(__dirname, "src/pages");
 const outDir = resolve(__dirname, "dist");
@@ -11,7 +12,12 @@ const input = {
   about: resolve(root, "about", "index.html"),
 };
 
-export default () => {
+export default async ({ mode }) => {
+  process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
+
+  const sanity = new Sanity();
+  const results = await sanity.getData();
+
   return defineConfig({
     root,
     build: {
@@ -25,134 +31,7 @@ export default () => {
       handlebars({
         context() {
           return {
-            title: "Modular Everything",
-            projects: [
-              {
-                title: "Outbreak Fest",
-                id: "outbreak-fest",
-                active: false,
-              },
-              {
-                title: "DSCVRD Magazine",
-                id: "dscvrd-magazine",
-                active: false,
-              },
-              {
-                title: "EF Kids & Teens",
-                id: "ef-kids-and-teens",
-                active: false,
-              },
-              {
-                title: "NRG Experiential",
-                id: "nrg",
-                active: false,
-              },
-              {
-                title: "Andy Cooke",
-                id: "andy-cooke",
-                active: false,
-              },
-              {
-                title: "Outbreak Fest",
-                id: "outbreak-fest",
-                active: false,
-              },
-              {
-                title: "DSCVRD Magazine",
-                id: "dscvrd-magazine",
-                active: false,
-              },
-              {
-                title: "EF Kids & Teens",
-                id: "ef-kids-and-teens",
-                active: false,
-              },
-              {
-                title: "NRG Experiential",
-                id: "nrg",
-                active: false,
-              },
-              {
-                title: "Andy Cooke",
-                id: "andy-cooke",
-                active: false,
-              },
-              {
-                title: "Outbreak Fest",
-                id: "outbreak-fest",
-                active: false,
-              },
-              {
-                title: "DSCVRD Magazine",
-                id: "dscvrd-magazine",
-                active: false,
-              },
-              {
-                title: "EF Kids & Teens",
-                id: "ef-kids-and-teens",
-                active: false,
-              },
-              {
-                title: "NRG Experiential",
-                id: "nrg",
-                active: false,
-              },
-              {
-                title: "Andy Cooke",
-                id: "andy-cooke",
-                active: false,
-              },
-              {
-                title: "Outbreak Fest",
-                id: "outbreak-fest",
-                active: false,
-              },
-              {
-                title: "DSCVRD Magazine",
-                id: "dscvrd-magazine",
-                active: false,
-              },
-              {
-                title: "EF Kids & Teens",
-                id: "ef-kids-and-teens",
-                active: false,
-              },
-              {
-                title: "NRG Experiential",
-                id: "nrg",
-                active: false,
-              },
-              {
-                title: "Andy Cooke",
-                id: "andy-cooke",
-                active: false,
-              },
-              {
-                title: "Outbreak Fest",
-                id: "outbreak-fest",
-                active: false,
-              },
-              {
-                title: "DSCVRD Magazine",
-                id: "dscvrd-magazine",
-                active: false,
-              },
-              {
-                title: "EF Kids & Teens",
-                id: "ef-kids-and-teens",
-                active: false,
-              },
-              {
-                title: "NRG Experiential",
-                id: "nrg",
-                active: false,
-              },
-              {
-                title: "Andy Cooke",
-                id: "andy-cooke",
-                active: false,
-              },
-            ],
+            ...results,
           };
         },
         partialDirectory: resolve(__dirname, "src/views"),
