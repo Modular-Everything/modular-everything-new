@@ -33,6 +33,19 @@ export default {
               type: "project",
             },
           ],
+          options: {
+            filter: ({ parent }) => {
+              const existingEntries = parent
+                .map((existingEntry) => existingEntry._ref)
+                .filter((item) => Boolean(item));
+              return {
+                filter: "!(_id in $existingEntries)",
+                params: {
+                  existingEntries,
+                },
+              };
+            },
+          },
         },
       ],
     },
