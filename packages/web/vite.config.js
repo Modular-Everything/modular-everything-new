@@ -16,7 +16,7 @@ export default async ({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
 
   const sanity = new Sanity();
-  const results = await sanity.getData();
+  const pages = await sanity.getPages();
 
   return defineConfig({
     root,
@@ -31,7 +31,7 @@ export default async ({ mode }) => {
       handlebars({
         context() {
           return {
-            ...results,
+            ...pages,
           };
         },
         partialDirectory: resolve(__dirname, "src/views"),
